@@ -1,6 +1,8 @@
 #!/bin/bash
-                                            ## Making a folder for downloaded files
-FOLDER=task_downloads
+
+START=$(date +%s.%N)			    ## Get current time at start
+
+FOLDER=task_downloads 			    ## Making a folder for downloaded files
 COUNTER=0
 mkdir $FOLDER
                                             ## Making a loop that read a file with 10 websites called weblist
@@ -18,5 +20,8 @@ done                                        ## The result is new 10 files create
                                             ## I enter the folder with all created files, sort the list by time creation and remove the newly 10 files
 cd $FOLDER
 rm -f $(ls -t | head -n10)                  ## Done
-                                            ## You can measure execution time by executing the script like this:# timer task.sh 
 
+END=$(date +%s.%N)			    ## Get current time at the end ot the script
+DIFF=$(echo "($END - $START)" | bc)         ## Calculating execution time
+
+echo "Time for script execution: $DIFF seconds."
